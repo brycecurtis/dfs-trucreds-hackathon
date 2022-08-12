@@ -50,7 +50,7 @@ Our hackathon, offers two (2) event tracks. Each participating team must select 
 
     ```
     $ cd <REPO_FOLDER>
-    $ mkdir /hackproject/code
+    $ mkdir ./hackproject/code
     $ cp -Rv ./track/<SELECTION>/* ./hackproject/code/
     ```
 

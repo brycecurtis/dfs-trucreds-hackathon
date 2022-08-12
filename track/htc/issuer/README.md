@@ -2,7 +2,7 @@
 
 This document describes how to build a custom issuer application which uses the [Verity REST APIs](https://gitlab.com/evernym/verity/verity-sdk#rest-api).
 
-This directory contains a sample node-based issuer web application.  The simplest way to create a custom issuer web application is by customizing this sample node application, which is what the remainder of this document assumes.  If you choose to use another language (e.q. java, python, etc), you will need to translate the sample code to the language of your choice.
+This directory contains a sample node-based issuer web application.  The simplest way to create a custom issuer web application is by customizing this sample node application, which is what the remainder of this document assumes.  If you choose to use another language (e.g. java, python, etc), you will need to translate the sample code to the language of your choice.
 
 ## Prereqs
 
@@ -11,12 +11,9 @@ Ensure that the following prereqs are met.
    - Install node.js v12 or later
    - Install ngrok ([https://ngrok.com/](https://ngrok.com/))
    - Install docker and docker-compose
+   - Avast DOMAIN_DID and X_API_KEY
 
-## Gather information
-
-There are several pieces of information which you will need to get in order to write your custom issuer web application.
-
-1. If you do not yet have a team DOMAIN_DID and X_API_KEY, send an email of the following form to natalia.moskaleva@avast.com:
+If you do not yet have a team DOMAIN_DID and X_API_KEY, send an email of the following form to natalia.moskaleva@avast.com:
 
    ```
    Subject: Request for DFS hackathon team DOMAIN_DID and X_API_KEY
@@ -24,19 +21,26 @@ There are several pieces of information which you will need to get in order to w
    Team: <your team name>
    ```
 
-   Wait for Natalia will respond with your team's DOMAIN_DID and X_API_KEY values.
+Wait for Natalia to respond with your team's DOMAIN_DID and X_API_KEY values.
    
-   Your team only needs a single DOMAIN_DID and X_API_KEY, so if you already have these, you can skip this step.
+Your team only needs a single DOMAIN_DID and X_API_KEY, so if you already have these, you can skip this step.
 
-2. Start ngrok as follows in a separate terminal window and leave it running:
+
+## Gather information
+
+There are several pieces of information which you will need to get in order to write your custom issuer web application.  
+
+**Note:** This section only needs to be done once to create your credential schema(s) and credential definition ids for your use case.
+
+1. Start ngrok as follows in a separate terminal window and leave it running:
 
    ```
    ngrok http 3000
    ```
 
-   Let `WEBHOOK_URL` refer to your NGROK forwarding URL of the form `https://bba4-2603-6081-1e40-203-c1bd-fd8e-b2f0-b1d4.ngrok.io`.
+   Note that `WEBHOOK_URL` in the next step refers to your NGROK forwarding URL of the form `https://<uuid>.ngrok.io`.
 
-3. Clone the Verity SDK and build/run the sample Verity web application as follows:
+2. Clone the Verity SDK and build/run the sample Verity web application as follows:
 
     ```
     git clone https://gitlab.com/evernym/verity/verity-sdk.git
@@ -49,7 +53,7 @@ There are several pieces of information which you will need to get in order to w
     node app.js
     ```
 
-4. Visit http://localhost:3000 in your browser.  You should see a screen similar to the following:
+3. Visit http://localhost:3000 in your browser.  You should see a screen similar to the following:
 
    ![Verity Example App](./images/verity-example-app.png)
 
@@ -69,7 +73,7 @@ There are several pieces of information which you will need to get in order to w
 
       * Attribute Names
 
-        One or more attribute names (e.g. "first_name", "last_name", "job_level").
+        One or more attribute names (e.g. "first_name", "last_name", "age").
 
         Make sure you remember these attribute names, because you will need them later.
        
@@ -87,38 +91,50 @@ There are several pieces of information which you will need to get in order to w
 
       Click the `Write Credential Definition` and set the `CREDENTIAL_DEFINITION_ID` environment variable to the value displayed as the `Credential Definition Id`.
 
-  5. Stop ngrok that was started in step 2 and the Verity sample web application which was started in step 3.
+	e. Repeat steps (c) & (d) for each schema your use case needs.
 
-You should now have the following environment variables set: `VERITY_URL`, `DOMAIN_DID`, `X_API_KEY`, `WEBHOOK_URL`, `CREDENTIAL_DEFINITION_ID`.
+4. Stop ngrok that was started in step 1 and the Verity sample web application which was started in step 2.
 
-You should also know the attribute names associated with the credential schema that you created.
+Write down the `Schema Ids` and corresponding `CREDENTIAL_DEFINITION_IDs` that were created as they will be used in the next section.  For our example, they are
+
+|Schema Name|Schema Version|Schema Id|Attributes|CREDENTIAL_DEFINITION_ID|
+|---|---|---|---|---|
+|DFS-hackathon-team1-employee|1.0|...|"first_name", "last_name", "age"|Aa4sRAaxcS1234NJgnEUVk:3:CL:325441:latest|
 
 ## Customizing the sample issuer code
 
 The following are step-by-step instructions for how to customize the sample node-based issuer web application.
 
-1. If you have not yet done so, fork this repository and clone the forked repository.  Set the `REPO_DIR` environment variable so that it refers to the `dfs-hackathon-digital-identity` directory created by the clone operation.
-
-2. Recursively copy the `$REPO_DIR/issuer` directory to another directory for your issuer application and set the `APP_DIR` environment variable to refer to this newly created directory.
-
-   For example, if your web application is supposed to issue DFS employee credentials, you might copy the `$REPO_DIR/issuer` directory to `$REPO_DIR/issuer.dfsEmployeeCredentials` as follows:
+1. If you have not yet done so, fork this repository and clone the forked repository.  Set the `REPO_FOLDER` environment variable so that it refers to the `dfs-trucreds-hackathon` directory created by the clone operation.  
+   
+   You should also have already followed the [hackathon configuration](../../../submission-guides/configuration-instructions.md) instructions and have a `$REPO_FOLDER/hackproject/code` directory that was copied from the htc track directory.
 
    ```
-   cd $REPO_DIR
-   cp -R issuer issuer.dfsEmployeeCredentials
-   export APP_DIR=$REPO_DIR/issuer.dfsEmployeeCredentials
+   $ cd $REPO_FOLDER
+   $ mkdir ./hackproject/code
+   $ cp -Rv ./track/htc/* ./hackproject/code/
    ```
 
-3. Edit the file `$APP_DIR/code/.env` and set your DOMAIN_DID, X_API_KEY, and CREDENTIAL_DEFINITION_ID values appropriately as obtained from the [Gather information](#gather-information) section.
+1. Recursively copy the `$REPO_FOLDER/hackproject/code/issuer` directory to another directory for your issuer application and set the `APP_DIR` environment variable to refer to this newly created directory.
 
-4. Edit the `$APP_DIR/code/src/main.js` file and set the `credentialData` variable with the appropriate attribute names and values.  For example, it might look as follows:
+   For example, if your web application is supposed to issue DFS employee credentials, you might copy the `$REPO_FOLDER/hackproject/code/issuer` directory to `$REPO_FOLDER/hackproject/code/issuer.dfsEmployeeCredentials` as follows:
+
+   ```
+   cd $REPO_FOLDER
+   cp -R hackproject/code/issuer hackproject/code/issuer.dfsEmployeeCredentials
+   export APP_DIR=$REPO_FOLDER/hackproject/code/issuer.dfsEmployeeCredentials
+   ```
+
+2. Edit the file `$APP_DIR/code/.env` and set your `DOMAIN_DID`, `X_API_KEY`, and `CREDENTIAL_DEFINITION_ID` values appropriately as obtained from the [Gather information](#gather-information) section.
+
+3. Edit the `$APP_DIR/code/src/main.js` file and set the `credentialData` variable with the appropriate attribute names and values.  For example, it might look as follows:
 
    ```
    // Credential data
    const credentialData = {
       "first_name": "Alice",
       "last_name": "Smith",
-      "birthdate": 12356789
+      "age": "22"
    };
    ```
 

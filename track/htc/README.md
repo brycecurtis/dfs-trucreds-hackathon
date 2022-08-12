@@ -1,17 +1,28 @@
 # Hack the Code
-Follow these instructioins to develop a prototype for the ```Hack the Code``` track of the hackathon.
 
-This repository is for the DFS Digital Identity Hackathon participants who are on the "hack-the-code" track.
+This directory is for the DFS Digital Identity Hackathon participants who are on the `Hack-the-code` track.
 
-There are three samples provided:
 
-* [Sample issuer web application](issuer/README.md)
+![Trust Triangle](../../designs/images/misc/trust-triangle.png)
 
-* [Sample verifier web application](verifier/README.md)
+The trust triangle identifies three different personas:
+1. Issuer
+2. Verifier
+3. Holder
 
-* [Sample mobile application](mobile/README.md)
+Before writing any code, you will need your credential schema(s) and proof request(s) from your design thinking session.
 
-The samples above may seem to imply that there will always be only one issuer and one verifier.  This is not true.  It is important for you to know that one or more of the following may be true for your use case.
+To help you implement your use case, three samples are provided - one for each of the personas:
+
+1. Issuer - [Sample issuer web application](issuer/README.md)
+2. Verifier - [Sample verifier web application](verifier/README.md)
+3. Holder - [Sample mobile application](mobile/README.md)
+
+You will need to modify the issuer example with your credential schema, and modify the verifier example with your proof request.
+
+---
+**Note:**
+The samples above may seem to imply that there will always be only one issuer and one verifier - but this is not true.  It is important for you to know that one or more of the following may be true for your use case.
 
 * You may have multiple issuers.  For example, consider a use case in which a verifier requires some attributes from  a person's employment credential and other attributes from their driver's license.
 
