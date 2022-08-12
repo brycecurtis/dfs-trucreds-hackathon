@@ -99,7 +99,7 @@ Write down the `Schema Ids` and corresponding `CREDENTIAL_DEFINITION_IDs` that w
 
 |Schema Name|Schema Version|Schema Id|Attributes|CREDENTIAL_DEFINITION_ID|
 |---|---|---|---|---|
-|DFS-hackathon-team1-employee|1.0|...|"first_name", "last_name", "age"|Aa4sRAaxcS1234NJgnEUVk:3:CL:325441:latest|
+|DFS-hackathon-team1-employee|1.0|Aa4...UVk:2:DFS-hackathon-team1-employee:1.0|"first_name", "last_name", "age"|Aa4...UVk:3:CL:325441:latest|
 
 ## Customizing the sample issuer code
 
