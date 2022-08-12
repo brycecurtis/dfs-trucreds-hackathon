@@ -115,7 +115,7 @@ The following are step-by-step instructions for how to customize the sample node
    $ cp -Rv ./track/htc/* ./hackproject/code/
    ```
 
-1. Recursively copy the `$REPO_FOLDER/hackproject/code/issuer` directory to another directory for your issuer application and set the `APP_DIR` environment variable to refer to this newly created directory.
+2. Recursively copy the `$REPO_FOLDER/hackproject/code/issuer` directory to another directory for your issuer application and set the `APP_DIR` environment variable to refer to this newly created directory.
 
    For example, if your web application is supposed to issue DFS employee credentials, you might copy the `$REPO_FOLDER/hackproject/code/issuer` directory to `$REPO_FOLDER/hackproject/code/issuer.dfsEmployeeCredentials` as follows:
 
@@ -125,9 +125,9 @@ The following are step-by-step instructions for how to customize the sample node
    export APP_DIR=$REPO_FOLDER/hackproject/code/issuer.dfsEmployeeCredentials
    ```
 
-2. Edit the file `$APP_DIR/code/.env` and set your `DOMAIN_DID`, `X_API_KEY`, and `CREDENTIAL_DEFINITION_ID` values appropriately as obtained from the [Gather information](#gather-information) section.
+3. Edit the file `$APP_DIR/code/.env` and set your `DOMAIN_DID`, `X_API_KEY`, and `CREDENTIAL_DEFINITION_ID` values appropriately as obtained from the [Gather information](#gather-information) section.
 
-3. Edit the `$APP_DIR/code/src/main.js` file and set the `credentialData` variable with the appropriate attribute names and values.  For example, it might look as follows:
+4. Edit the `$APP_DIR/code/src/main.js` file and set the `credentialData` variable with the appropriate attribute names and values.  For example, it might look as follows:
 
    ```
    // Credential data

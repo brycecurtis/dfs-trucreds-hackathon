@@ -11,24 +11,25 @@ Ensure that the following prereqs are met.
    - Install node.js v12 or later
    - Install ngrok ([https://ngrok.com/](https://ngrok.com/))
    - Install docker and docker-compose
+   - Avast DOMAIN_DID and X_API_KEY
+
+If you do not yet have a team DOMAIN_DID and X_API_KEY, send an email of the following form to natalia.moskaleva@avast.com:
+
+   ```
+   Subject: Request for DFS hackathon team DOMAIN_DID and X_API_KEY
+
+   Team: <your team name>
+   ```
+
+Wait for Natalia to respond with your team's DOMAIN_DID and X_API_KEY values.
+   
+Your team only needs a single DOMAIN_DID and X_API_KEY, so if you already have these, you can skip this step.
 
 ## Gather information
 
 This section describes the information you will need to gather in order to develop your custom verifier application.
 
-1. If you do not yet have a team DOMAIN_DID and X_API_KEY, send an email of the following form to natalia.moskaleva@avast.com:
-
-   ```
-   Subject: Request for DFS hackathon team DOMAIN_DID and X_API_KEY
-   
-   Team: <your team name>
-   ```
-
-   Wait for Natalia will respond with your team's DOMAIN_DID and X_API_KEY values
-   
-   Your team only needs a single DOMAIN_DID and X_API_KEY, so if you already have these, you can skip this step.
-
-2. Depending on your use case, you will need one or more credential definition IDs that were created by a credential issuer.  You will also need the names of the attributes associated with each credential definition ID which your verifier needs to verify.
+1. Depending on your use case, you will need one or more credential definition IDs that were created by a [credential issuer](../issuer/README.md).  You will also need the names of the attributes associated with each credential definition ID which your verifier needs to verify.
 
    For example, if you want to verify that a person is 21 years or older according to your state's driver's license credential, you would need the credential definition ID of your state's DMV and the name of the attribute which provides the person's birthdate.
 
@@ -36,19 +37,27 @@ This section describes the information you will need to gather in order to devel
 
 The following are step-by-step instructions for how to customize the sample node-based verifier web application.
 
-1. If you have not yet done so, fork this repository and clone the forked repository.  Set the `REPO_DIR` environment variable so that it refers to the `dfs-hackathon-digital-identity` directory created by the clone operation.
-
-2. Recursively copy the `$REPO_DIR/verifier` directory to another directory for your issuer application and set the `APP_DIR` environment variable to refer to this newly created directory.
-
-   For example, if your web application is supposed to verify that someone is a DFS employee credentials, you might copy the `$REPO_DIR/verifier` directory to `$REPO_DIR/verifier.dfsEmployee` as follows:
+1. If you have not yet done so, fork this repository and clone the forked repository.  Set the `REPO_DIR` environment variable so that it refers to the `dfs-trucreds-hackathon` directory created by the clone operation.
+   
+   You should also have already followed the [hackathon configuration](../../../submission-guides/configuration-instructions.md) instructions and have a `$REPO_FOLDER/hackproject/code` directory that was copied from the htc track directory.
 
    ```
-   cd $REPO_DIR
-   cp -R verifier verifier.dfsEmployee
-   export APP_DIR=$REPO_DIR/verifier.dfsEmployee
+   $ cd $REPO_FOLDER
+   $ mkdir ./hackproject/code
+   $ cp -Rv ./track/htc/* ./hackproject/code/
    ```
 
-3. Edit the file `$APP_DIR/code/.env` and set your DOMAIN_DID and X_API_KEY values appropriately as obtained from the [Gather information](#gather-information) section.
+2. Recursively copy the `$REPO_FOLDER/hackproject/code/verifier` directory to another directory for your issuer application and set the `APP_DIR` environment variable to refer to this newly created directory.
+
+   For example, if your web application is supposed to verify that someone is a DFS employee credentials, you might copy the `$REPO_FOLDER/hackproject/code/verifier` directory to `$REPO_FOLDER/hackproject/code/verifier.dfsEmployee` as follows:
+
+   ```
+   cd $REPO_FOLDER
+   cp -R hackproject/code/verifier hackproject/code/verifier.dfsEmployee
+   export APP_DIR=$REPO_FOLDER/hackproject/code/verifier.dfsEmployee
+   ```
+
+3. Edit the file `$APP_DIR/code/.env` and set your `DOMAIN_DID` and `X_API_KEY` values appropriately as obtained from the [Gather information](#gather-information) section.
 
 4. Edit the `$APP_DIR/code/src/main.js` file and set the `proofMessage` variable appropriately according to your use case (just below the `STEP 6.2 - Proof request` comment).  See information regarding how to form a valid proof message [here ](https://github.com/evernym/verity-sdk/blob/main/FAQ.md#proof-restrictions).  See [this swagger](https://app.swaggerhub.com/apis/evernym/verity-rest-api/1.0#/PresentProof/requestProof) for how to request a predicate (e.g. ">=" a numeric value).
 
