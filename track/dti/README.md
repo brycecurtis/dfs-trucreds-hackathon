@@ -17,7 +17,7 @@ The following is a tutorial which leads you step-by-step through the issuance an
 
 1. First, install the Connect.Me Digital Wallet mobile application on your iphone or android device.  It is available for free from the Apple AppStore for your iphone device, or from Google Play for your android device.
 
-2. Create one or more Verity Flow accounts by sending an email of the following form to Natalia Moskaleva from Avast at [natalia.moskaleva@avast.com)(mailto:natalia.moskaleva@avast.com):
+2. Create one or more Verity Flow accounts by sending an email of the following form to Natalia Moskaleva from Avast at [natalia.moskaleva@avast.com](mailto:natalia.moskaleva@avast.com):
 
    ```
    Subject: DFS TruCreds Hackathon - Request for Verity Flow account(s)
