@@ -33,7 +33,7 @@ Please follow the these instructions for creating a ``` Team Workspace``` reposi
 4. Type a name for your repository, and add a description (optional).
 5. Choose to make the new repository publicly visible.
 6. Navigate to your new repository.
-7. Update the README.md.
+7. Update the README.md according to the instructions below in the [Update Readme section](https://github.com/brycecurtis/dfs-trucreds-hackathon/blob/main/submission-guides/configuration-instructions.md#update-readme).
 8. Clone the Team Workspace repo to the Development Workstation
 
 ###  Pick an Event Track
