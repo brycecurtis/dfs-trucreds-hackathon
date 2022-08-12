@@ -76,7 +76,7 @@ Steps:
 	```
 	$ cd src
 	$ yarn
-	$ cd src/ios
+	$ cd ios
 	$ pod install
 	```
 2. Open ```MsdkProject.xcworkspace``` in Xcode.
