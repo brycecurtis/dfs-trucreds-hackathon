@@ -199,7 +199,12 @@ async function run() {
 			proof_attrs: [
 				{
 					name: 'first_name',
-					restrictions: [],
+					restrictions: [
+					// It is recommended for increased security to include a restriction, such as the cred_def_id
+					// {
+					//	"cred_def_id": "Aa4sRAaxcSB4CqNJgnEUVk:3:CL:334784:latest"
+					// }
+					],
 					self_attest_allowed: false
 				},
 				{
