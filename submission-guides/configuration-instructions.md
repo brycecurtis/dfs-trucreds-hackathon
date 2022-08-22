@@ -30,7 +30,7 @@ Please follow the these instructions for creating a ``` Team Workspace``` reposi
 1. Using a [public GitHub account](https://github.com/) on a **personal computer**, navigate to the [TruCreds Event Repo Template](https://github.com/brycecurtis/dfs-trucreds-hackathon).
 2. Above the file list, click `Use this template`.
 3. Use the Owner drop-down menu, and select the account that will own this newly created repository. Hint: It should be assigned to a designated person on the team that will own the team's public GitHub repo.   
-4. Type a name for your repository, and add a description (optional).
+4. Type a name for your repository, and add a description (optional). **HINT**: The repo name should be same as your event Team Name.
 5. Choose to make the new repository publicly visible.
 6. Navigate to your new repository.
 7. Update the README.md according to the instructions below in the [Update Readme section](https://github.com/brycecurtis/dfs-trucreds-hackathon/blob/main/submission-guides/configuration-instructions.md#update-readme).
