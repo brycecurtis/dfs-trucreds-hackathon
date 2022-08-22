@@ -14,7 +14,7 @@ To ensure a smooth development and submission process for your project, it is im
 1. Using a [Discover Enterprise GitHub account](https://github.discoverfinancial.com/), create a new `Team Project Submission Repository` using the following naming convention:
 
     ```
-    # Substitue your TEAM NAME for <team-project-name>
+    # Substitute your TEAM NAME for <team-project-name>
     trucreds-<team-project-name>
     ```
 
