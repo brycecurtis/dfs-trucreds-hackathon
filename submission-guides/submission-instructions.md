@@ -15,7 +15,7 @@ To ensure a smooth development and submission process for your project, it is im
 
     ```
     # Substitute your TEAM NAME for <team-project-name>
-    trucreds-<team-project-name>
+   <team-project-name>
     ```
 
 2. Follow the instructions for adding [GitHub Topics](https://docs.github.com/en/enterprise-server@3.0/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/classifying-your-repository-with-topics#adding-topics-to-your-repository) so that you can **ADD** the REQUIRED `runway-t22-3` topic to the Team's Project Submission Repository. 
